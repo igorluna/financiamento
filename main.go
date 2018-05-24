@@ -1,18 +1,23 @@
 package main
 
 import (
-	"financiamento/model"
+	"financiamento/service"
 	"time"
 )
 
 func main() {
 
-	//INPUT - DataCompra, DataPrimeiraParcela, ValorCompra, NumeroParcelas, TaxaDeJuros
-	DataCompra := time.Date(2009, 05, 24, 0, 0, 0, 0, time.UTC)
-	DataPrimeiraParcela := time.Date(2009, 06, 24, 0, 0, 0, 0, time.UTC)
-	ValorCompra := model.Money{"BRL", 200}
-	numeroParcelas := 2
-	taxaJuros := 14.99
+	//* INPUT - DataCompra, DataPrimeiraParcela, ValorCompra, NumeroParcelas, TaxaDeJuros
+	financiamento := service.Financiamento{
+		DataCompra:          time.Date(2009, 05, 24, 0, 0, 0, 0, time.UTC),
+		DataPrimeiraParcela: time.Date(2009, 06, 24, 0, 0, 0, 0, time.UTC),
+		ValorCompra:         200.00,
+		NumeroParcelas:      2,
+		TaxaJuros:           14.99,
+	}
+	//TODO Move divida para o vencimento
 
-	//OUTPUT - PMT
+	pgto := financiamento.PGTO(false)
+
+	//* OUTPUT - PMT
 }
